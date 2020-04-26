@@ -7,6 +7,8 @@ var setMosquitoTime = 1500
 
 var level = window.location.search
 
+//testa o nível escolhido pelo usuário e define o tempo.
+
 level = level.replace('?', '')
 
 if (level === 'facil') {
@@ -22,6 +24,8 @@ if (level === 'facil') {
 
 document.getElementById('timer').innerHTML = time
 
+//ajusta o tamanho de acordo com a tela do usuário
+
 function adjustSize() {
     height = window.innerHeight
     width = window.innerWidth
@@ -35,7 +39,7 @@ var timer = setInterval(function() {
     if (time < 0) {
         clearInterval(timer)
         clearInterval(setMosquito)
-        window.location.href = 'victory.html'
+        window.location.href = 'victory.html'   //se o tempo acabar e o player ainda tiver corações, vitória.
     } else {
         document.getElementById('timer').innerHTML = time
     }
@@ -46,20 +50,24 @@ function randomPosition() {
         document.getElementById('mosquito').remove()
 
         if (emptyHearts > 3) {
-            window.location.href = 'game_over.html'
+            window.location.href = 'game_over.html'     //se o player tiver perdido os 3 corações, game over.
         } else {
-            document.getElementById('l' + emptyHearts).src="images/empty_heart.png"
+            document.getElementById('l' + emptyHearts).src="images/empty_heart.png"     //senão, retira um coração.
 
             emptyHearts++
         }
 
     }
 
+    //gera uma posição aleatória para os mosquitos que aparecem.
+
     var positionX = Math.floor(Math.random() * width) - 90
     var positionY = Math.floor(Math.random() * height) - 90
 
     positionX = positionX < 0 ? 0 : positionX
     positionY = positionY < 0 ? 0 : positionY
+
+    //criando elemento HTML mosquito.
 
     var mosquito = document.createElement('img')
     mosquito.src = 'images/mosquito.png'
@@ -76,6 +84,8 @@ function randomPosition() {
 
 }
 
+//gera um tamanho aleatório para os mosquitos.
+
 function randomSize() {
     var size = Math.floor(Math.random() * 3)
 
@@ -89,6 +99,8 @@ function randomSize() {
     }
 }
 
+//define aleatoriamente o lado para qual o mosquito está virado.
+
 function randomSide() {
     var side = Math.floor(Math.random() * 2)
 
@@ -100,9 +112,13 @@ function randomSide() {
     }
 }
 
+//timer para spawnar os mosquitos na tela.
+
 var setMosquito = setInterval(function() {
     randomPosition()
 }, setMosquitoTime)
+
+//inicia o jogo e, caso o player não tenha escolhido um nível, exibe um alerta.
 
 function startGame() {
     var level = document.getElementById('level').value
