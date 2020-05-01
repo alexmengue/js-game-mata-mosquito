@@ -1,11 +1,11 @@
-var height = 0
-var width = 0
-var emptyHearts = 1
-var time = 15
+let height = 0
+let width = 0
+let emptyHearts = 1
+let time = 15
 
 var setMosquitoTime = 1500
 
-var level = window.location.search
+let level = window.location.search
 
 //testa o nível escolhido pelo usuário e define o tempo.
 
@@ -33,7 +33,7 @@ function adjustSize() {
 
 adjustSize()
 
-var timer = setInterval(function() {
+let timer = setInterval(function() {
     time -= 1
 
     if (time < 0) {
@@ -61,15 +61,15 @@ function randomPosition() {
 
     //gera uma posição aleatória para os mosquitos que aparecem.
 
-    var positionX = Math.floor(Math.random() * width) - 90
-    var positionY = Math.floor(Math.random() * height) - 90
+    let positionX = Math.floor(Math.random() * width) - 90
+    let positionY = Math.floor(Math.random() * height) - 90
 
     positionX = positionX < 0 ? 0 : positionX
     positionY = positionY < 0 ? 0 : positionY
 
     //criando elemento HTML mosquito.
 
-    var mosquito = document.createElement('img')
+    let mosquito = document.createElement('img')
     mosquito.src = 'images/mosquito.png'
     mosquito.className = randomSize() + ' ' + randomSide()
     mosquito.style.left = positionX + 'px'
@@ -87,7 +87,7 @@ function randomPosition() {
 //gera um tamanho aleatório para os mosquitos.
 
 function randomSize() {
-    var size = Math.floor(Math.random() * 3)
+    let size = Math.floor(Math.random() * 3)
 
     switch (size) {
         case 0:
@@ -102,7 +102,7 @@ function randomSize() {
 //define aleatoriamente o lado para qual o mosquito está virado.
 
 function randomSide() {
-    var side = Math.floor(Math.random() * 2)
+    let side = Math.floor(Math.random() * 2)
 
     switch (side) {
         case 0:
@@ -114,14 +114,14 @@ function randomSide() {
 
 //timer para spawnar os mosquitos na tela.
 
-var setMosquito = setInterval(function() {
+let setMosquito = setInterval(function() {
     randomPosition()
 }, setMosquitoTime)
 
 //inicia o jogo e, caso o player não tenha escolhido um nível, exibe um alerta.
 
 function startGame() {
-    var level = document.getElementById('level').value
+    let level = document.getElementById('level').value
 
     if (level === '') {
         alert('Selecione um nível para iniciar o jogo!')
